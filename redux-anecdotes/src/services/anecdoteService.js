@@ -13,4 +13,14 @@ const createAndSaveNew = async (content) => {
   return res.data
 }
 
-export default { getAll, createAndSaveNew }
+const update = async (id) => {
+  const res = await axios.get(`${baseUrl}/${id}`)
+  const anecdote = res.data
+  console.log(anecdote)
+  const updatedAnecdote = {
+    ...anecdote, votes: anecdote.votes + 1
+  }
+  const response = await axios.put(`${baseUrl}/${id}`, updatedAnecdote)
+}
+
+export default { getAll, createAndSaveNew, update }
