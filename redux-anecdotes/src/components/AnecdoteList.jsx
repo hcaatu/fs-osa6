@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addVote } from '../reducers/anecdoteReducer'
 
 const filterElements = (array, query) => {
-  console.log('array: ', array)
-  console.log('query: ', query)
   return array.filter(item => item.content.toLowerCase().includes(query.toLowerCase()))
 }
 
