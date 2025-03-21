@@ -13,12 +13,22 @@ const AnecdoteForm = () => {
     }
   })
 
+  const errorMessage = () => {
+    dispatch({ type: 'NEW_MESSAGE', payload: `Anecdote must have length 5 or more`})
+  }
+
+  const successMessage = (anecdote) => {
+    dispatch({ type: 'NEW_MESSAGE', payload: `New anecdote created: ${anecdote.content}`})
+  }
+
   const onCreate = (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
-    newAnecdoteMutation.mutate(content)
-    dispatch({ type: 'NEW_MESSAGE', payload: `New anecdote created: ${content}`})
+    newAnecdoteMutation.mutate(content, { 
+      onSuccess: successMessage, 
+      onError: errorMessage 
+    })
   }
 
   return (
