@@ -1,0 +1,1 @@
+This repository consists of the sixth part of Full Stack Open.
